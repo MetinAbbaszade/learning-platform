@@ -1,0 +1,78 @@
+# =========================
+# Dependencies
+# =========================
+node_modules/
+.pnpm-store/
+.npm/
+.yarn/
+
+# =========================
+# Build outputs
+# =========================
+dist/
+build/
+.next/
+out/
+coverage/
+.turbo/
+
+# =========================
+# TypeScript
+# =========================
+*.tsbuildinfo
+
+# =========================
+# Next.js
+# =========================
+**/next/
+**/next/cache/
+**/next/server/
+**/next/static/
+**/next-env.d.ts
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+pnpm-debug.log*
+
+# =========================
+# Environment variables
+# =========================
+**/.env
+**/.env.*
+**/!.env.example
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Editor / IDE
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# Testing
+# =========================
+coverage/
+test-results/
+playwright-report/
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
+
+# =========================
+# Misc
+# =========================
+tmp/
+temp/
+.cache/
