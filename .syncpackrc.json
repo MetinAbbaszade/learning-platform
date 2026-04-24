@@ -3,21 +3,15 @@
 		{
 			"label": "use workspace protocol for internal packages",
 			"dependencies": ["@repo/**"],
-			"dependencyTypes": ["dependencies", "devDependencies"],
+			"dependencyTypes": ["prod", "dev"],
 			"pinVersion": "workspace:*"
-		},
-		{
-			"label": "ensure single version for shared deps",
-			"dependencyTypes": ["dependencies", "devDependencies"],
-			"pinVersion": "same"
 		}
 	],
 	"semverGroups": [
 		{
-			"label": "enforce semver ranges",
+			"label": "enforce caret ranges",
 			"range": "^",
-			"dependencies": ["*"]
+			"dependencies": ["!@repo/**", "*"]
 		}
-	],
-	"dependencyTypes": ["dependencies", "devDependencies"]
+	]
 }
