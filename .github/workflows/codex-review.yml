@@ -24,7 +24,6 @@ jobs:
     env:
       OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       GITHUB_TOKEN: ${{ github.token }}
-      CODEX_MODEL: ${{ vars.CODEX_MODEL || 'gpt-5.2-codex' }}
       PR_NUMBER: ${{ github.event.pull_request.number }}
       HEAD_SHA: ${{ github.event.pull_request.head.sha }}
       BASE_SHA: ${{ github.event.pull_request.base.sha }}
@@ -170,14 +169,13 @@ jobs:
 
       - name: Run Codex review
         id: run-codex
-        uses: openai/codex-action@main
+        uses: openai/codex-action@v1
         with:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
           prompt-file: codex-prompt.md
           output-schema-file: codex-output-schema.json
           output-file: codex-output.json
           sandbox: read-only
-          model: ${{ env.CODEX_MODEL }}
 
       - name: Publish inline review comments
         if: ${{ always() }}
