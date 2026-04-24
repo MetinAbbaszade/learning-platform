@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if [[ -z "${1:-}" ]]; then
+  echo "Usage: commit-msg <commit-msg-file>" >&2
+  exit 1
+fi
+
+MSG_FILE="$1"
+MSG=$(grep -v '^#' "$MSG_FILE" | grep -v '^[[:space:]]*$' | head -1 || true)
+
+if [[ -z "$MSG" ]]; then
+  echo ""
+  echo "  ✗ Invalid commit message."
+  echo ""
+  echo "  Format:  <type>(<scope>): <description> (#<issue>)"
+  echo "  Types:   feat | fix | refactor | docs | ci | chore | test"
+  echo ""
+  echo "  Examples:"
+  echo "    feat(web): add enrollment card (#201)"
+  echo "    fix(auth): handle session expiry"
+  echo "    chore(infra): update docker compose ports"
+  echo ""
+  echo "  Your message: <empty>"
+  echo ""
+  exit 1
+fi
+
+# Skip merge commits
+if echo "$MSG" | grep -qE "^Merge "; then
+  exit 0
+fi
+
+# Skip fixup/squash commits (used during interactive rebase)
+if echo "$MSG" | grep -qE "^(fixup|squash)! "; then
+  exit 0
+fi
+
+PATTERN="^(feat|fix|refactor|docs|ci|chore|test)(\([^)]+\))?: .{1,72}( \(#[0-9]+\))?$"
+
+if ! echo "$MSG" | grep -qE "$PATTERN"; then
+  echo ""
+  echo "  ✗ Invalid commit message."
+  echo ""
+  echo "  Format:  <type>(<scope>): <description> (#<issue>)"
+  echo "  Types:   feat | fix | refactor | docs | ci | chore | test"
+  echo ""
+  echo "  Examples:"
+  echo "    feat(web): add enrollment card (#201)"
+  echo "    fix(auth): handle session expiry"
+  echo "    chore(infra): update docker compose ports"
+  echo ""
+  echo "  Your message: $MSG"
+  echo ""
+  exit 1
+fi
+
+exit 0

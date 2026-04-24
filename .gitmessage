@@ -1,0 +1,15 @@
+# Conventional Commits — <type>(<scope>): <description> (#<issue>)
+#
+# Types (required):  feat | fix | refactor | docs | ci | chore | test
+# Scope (optional):  e.g. web, admin-ui, api, auth, ui, infra, config, 
+# Issue (encouraged): (#123) at end
+#
+# Examples:
+#   feat(web): add enrollment card component (#201)
+#   fix(auth): handle session expiry on redirect (#198)
+#   refactor(ui): extract table to reusable component
+#   chore(infra): update docker compose ports
+#
+# Branch rule: <type>/<issue-number>-description  (issue required except chore)
+#   feat/201-enrollment-card | fix/198-session-expiry | chore/update-docker
+

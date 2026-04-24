@@ -1,0 +1,74 @@
+name: Conventional Commits
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate branch name
+        run: |
+          BRANCH="${{ github.head_ref }}"
+          echo "Branch: $BRANCH"
+
+          # chore branches allow an optional issue number
+          PATTERN="^((feat|fix|refactor|docs|ci|test)/[0-9]+-[a-z0-9][a-z0-9-]*|chore/([0-9]+-)?[a-z0-9][a-z0-9-]*)$"
+          if ! echo "$BRANCH" | grep -qE "$PATTERN"; then
+            echo "✗ Invalid branch name: $BRANCH"
+            echo ""
+            echo "Expected: <type>/<issue-number>-description"
+            echo "  chore/<description>"
+            echo "  chore/<issue-number>-description"
+            echo "Examples:"
+            echo "  feat/201-enrollment-card"
+            echo "  fix/198-session-expiry"
+            echo "  chore/update-docker-ports"
+            echo "  chore/123-update-docker-ports"
+            exit 1
+          fi
+
+          echo "✓ Branch name valid"
+
+      - name: Fetch base branch
+        run: git fetch origin ${{ github.base_ref }}
+
+      - name: Validate commit messages
+        run: |
+          PATTERN="^(feat|fix|refactor|docs|ci|chore|test)(\([^)]+\))?: .{1,72}( \(#[0-9]+\))?$"
+          FAILED=0
+
+          while IFS= read -r MSG; do
+            # Skip merge commits
+            if echo "$MSG" | grep -qE "^Merge "; then
+              continue
+            fi
+            # Skip fixup/squash commits
+            if echo "$MSG" | grep -qE "^(fixup|squash)! "; then
+              continue
+            fi
+
+            if ! echo "$MSG" | grep -qE "$PATTERN"; then
+              echo "✗ Invalid: $MSG"
+              FAILED=1
+            else
+              echo "✓ Valid:   $MSG"
+            fi
+          done < <(git log "origin/${{ github.base_ref }}..HEAD" --format="%s")
+
+          if [ "$FAILED" -ne 0 ]; then
+            echo ""
+            echo "One or more commit messages do not follow the convention."
+            echo "Format: <type>(<scope>): <description> (#<issue>)"
+            echo "Types:  feat | fix | refactor | docs | ci | chore | test"
+            exit 1
+          fi
+
+          echo "All commit messages valid."
