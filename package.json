@@ -7,16 +7,17 @@
 		"check-types": "turbo run check-types",
 		"format-and-lint": "biome check .",
 		"format-and-lint:fix": "biome check . --write",
-		"deps:check": "syncpack lint",
+		"deps:check": "syncpack lint --dependency-types prod,dev",
 		"deps:fix": "syncpack fix-mismatches",
-		"deps:format": "syncpack format"
+		"deps:format": "syncpack format",
+		"deps:format:check": "syncpack format --check"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.12",
 		"prettier": "^3.7.4",
 		"syncpack": "^14.3.0",
 		"turbo": "^2.9.6",
-		"typescript": "5.9.2"
+		"typescript": "^5.9.2"
 	},
 	"packageManager": "pnpm@9.0.0",
 	"engines": {
