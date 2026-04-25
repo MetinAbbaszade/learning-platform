@@ -53,24 +53,24 @@ Standard [Conventional Commits](https://www.conventionalcommits.org/):
 <type>(<scope>): <description> (#<issue>)
 ```
 
-| Part | Rule |
-|---|---|
-| **type** | Required. See table below. |
-| **scope** | Optional. Free-form area: `web`, `admin-ui`, `api`, `auth`, `ui`, `infra`, `config`,  etc. |
-| **description** | Should be imperative and lowercase; keep to ~72 chars where practical. |
-| **issue** | Optional but encouraged. `(#123)` at the end. |
+| Part            | Rule                                                                                      |
+| --------------- | ----------------------------------------------------------------------------------------- |
+| **type**        | Required. See table below.                                                                |
+| **scope**       | Optional. Free-form area: `web`, `admin-ui`, `api`, `auth`, `ui`, `infra`, `config`, etc. |
+| **description** | Should be imperative and lowercase; keep to ~72 chars where practical.                    |
+| **issue**       | Optional but encouraged. `(#123)` at the end.                                             |
 
 #### Commit types
 
-| Type | Use for |
-|---|---|
-| `feat` | New feature or user-facing behaviour |
-| `fix` | Bug fix |
-| `refactor` | Code change with no behaviour change |
-| `docs` | Documentation only |
-| `ci` | CI/CD configuration |
-| `chore` | Tooling, deps, config — no production code |
-| `test` | Adding or updating tests |
+| Type       | Use for                                    |
+| ---------- | ------------------------------------------ |
+| `feat`     | New feature or user-facing behaviour       |
+| `fix`      | Bug fix                                    |
+| `refactor` | Code change with no behaviour change       |
+| `docs`     | Documentation only                         |
+| `ci`       | CI/CD configuration                        |
+| `chore`    | Tooling, deps, config — no production code |
+| `test`     | Adding or updating tests                   |
 
 #### Examples
 
@@ -79,7 +79,7 @@ feat(courses): add enrollment card component (#201)
 fix(auth): handle session expiry on redirect (#198)
 refactor(admin-ui): extract table to reusable component
 chore: update docker compose ports
-docs: update ADR5 with simplified conventions
+docs: update ADR1 with simplified conventions
 ```
 
 **Tip:** Run `git commit` without `-m` to open the pre-filled template.
@@ -88,12 +88,12 @@ docs: update ADR5 with simplified conventions
 
 Four GitHub issue templates are available when opening a new issue:
 
-| Template | Label | Key fields |
-|---|---|---|
-| Bug Report | `bug` | Steps to reproduce, expected vs actual, environment, screenshots |
-| Feature Request | `enhancement` | Problem, proposed solution, acceptance criteria |
-| Developer Task | `task` | Area (client-ui / admin-ui / backend), description, acceptance criteria |
-| Refactor | `refactor` | What, motivation, scope, risk |
+| Template        | Label         | Key fields                                                              |
+| --------------- | ------------- | ----------------------------------------------------------------------- |
+| Bug Report      | `bug`         | Steps to reproduce, expected vs actual, environment, screenshots        |
+| Feature Request | `enhancement` | Problem, proposed solution, acceptance criteria                         |
+| Developer Task  | `task`        | Area (client-ui / admin-ui / backend), description, acceptance criteria |
+| Refactor        | `refactor`    | What, motivation, scope, risk                                           |
 
 Issue **title format**: `<type>: <short description>` — e.g. `fix: course card not loading on mobile`
 
@@ -115,6 +115,7 @@ The PR template (`.github/PULL_REQUEST_TEMPLATE.md`) pre-fills: **What / Why / H
 ```
 
 This configures:
+
 - `.githooks/commit-msg` — validates your commit message format before the commit lands
 - `.gitmessage` — pre-fills the commit editor with the convention skeleton
 
@@ -124,21 +125,26 @@ message and branch name on every PR. It is the safety net when the local hook is
 ### 7. Code Quality & Styling
 
 #### Backend (Node.js / Express / TypeScript)
+
 - Must pass TypeScript (tsc --noEmit)
 - Must build successfully
 - Follow clear structure (routes → controllers → services)
 - Use environment variables safely
 
 #### Frontend (Next.js / TypeScript)
+
 - Must pass Biome (format + lint)
 - No blocking lint errors
 - Reuse shared components (packages/ui)
 
 #### Monorepo rules
+
 - Use workspace protocol for internal packages:
+
 ```
 "@repo/ui": "workspace:*"
 ```
+
 - Keep dependency versions consistent (Syncpack)
 - Avoid duplicating logic - extract to **packages/**
 
@@ -149,13 +155,14 @@ If UI is affected, include **before/after screenshots** in the PR description.
 ## Consequences
 
 **Positive:**
+
 - Single, unambiguous commit style across all contributors (human and AI)
 - Local hook + CI workflow catch violations early
 - GitHub templates reduce friction for creating well-formed issues and PRs
 
 **Negative:**
-- Developers must run `./scripts/setup-hooks.sh` after cloning (documented in README)
 
+- Developers must run `./scripts/setup-hooks.sh` after cloning (documented in README)
 
 ## Compliance
 

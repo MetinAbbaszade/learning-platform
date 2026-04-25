@@ -5,9 +5,9 @@ This file is read by AI agents (OpenAI Codex, Claude Code, etc.) working in this
 ## Contribution Conventions
 
 All commits, branches, issues, and PRs follow the conventions defined in
-[ADR5](docs/adrs/adr5_contribution_guidelines.md).
+[ADR1](docs/adrs/adr1_contribution_guidelines.md).
 
-Quick reference below. Read ADR5 for full rationale, edge cases, and examples.
+Quick reference below. Read ADR1 for full rationale, edge cases, and examples.
 
 ### Commit format
 
@@ -16,7 +16,7 @@ Quick reference below. Read ADR5 for full rationale, edge cases, and examples.
 ```
 
 - **type** (required): `feat` | `fix` | `refactor` | `docs` | `ci` | `chore` | `test`
-- **scope** (optional): free-form area, e.g. `web`, `admin-ui` , `api`, `auth`, `ui`, `infra`, `config` 
+- **scope** (optional): free-form area, e.g. `web`, `admin-ui` , `api`, `auth`, `ui`, `infra`, `config`
 - **description**: imperative, lowercase, max ~72 chars
 - **issue** (encouraged): `(#123)` at end
 
@@ -30,15 +30,15 @@ Issue number is **required** for all types except `chore`.
 
 ### Types
 
-| Type | Use for |
-|---|---|
-| `feat` | New feature or user-facing behaviour |
-| `fix` | Bug fix |
-| `refactor` | Code change with no behaviour change |
-| `docs` | Documentation only |
-| `ci` | CI/CD configuration |
-| `chore` | Tooling, deps, config — no production code |
-| `test` | Adding or updating tests |
+| Type       | Use for                                    |
+| ---------- | ------------------------------------------ |
+| `feat`     | New feature or user-facing behaviour       |
+| `fix`      | Bug fix                                    |
+| `refactor` | Code change with no behaviour change       |
+| `docs`     | Documentation only                         |
+| `ci`       | CI/CD configuration                        |
+| `chore`    | Tooling, deps, config — no production code |
+| `test`     | Adding or updating tests                   |
 
 ---
 
@@ -56,7 +56,7 @@ Before committing, do not use `git commit -m`. Instead:
 6. Run `git commit` (no `-m` flag) — the template opens; fill it in and save
 7. The commit-msg hook validates automatically; fix the message if it rejects
 
-> For the full convention, see [ADR5 § Commit Convention](docs/adrs/adr5_contribution_guidelines.md#3-commit-convention).
+> For the full convention, see [ADR1 § Commit Convention](docs/adrs/adr1_contribution_guidelines.md#3-commit-convention).
 
 ### Opening an issue
 
@@ -65,7 +65,7 @@ Before committing, do not use `git commit -m`. Instead:
 3. Title format: `<type>: <short description>` (imperative, lowercase)
 4. Fill all template fields — do not leave acceptance criteria empty
 
-> For field definitions, see [ADR5 § Issue Conventions](docs/adrs/adr5_contribution_guidelines.md#4-issue-conventions).
+> For field definitions, see [ADR1 § Issue Conventions](docs/adrs/adr1_contribution_guidelines.md#4-issue-conventions).
 
 ### Opening a PR
 
@@ -76,7 +76,7 @@ Before committing, do not use `git commit -m`. Instead:
 5. Request at least **1 reviewer**
 6. Do not merge until CI passes
 
-> For full PR rules, see [ADR5 § Pull Request Rules](docs/adrs/adr5_contribution_guidelines.md#5-pull-request-rules).
+> For full PR rules, see [ADR1 § Pull Request Rules](docs/adrs/adr1_contribution_guidelines.md#5-pull-request-rules).
 
 ### Monorepo Rules
 
@@ -99,7 +99,6 @@ When reviewing PRs, ensure:
 - No unsafe environment variable usage
 - Backend follows layered structure (routes → controllers → services)
 - Frontend reuses shared UI components when possible
-
 
 ### CI Expectations
 
