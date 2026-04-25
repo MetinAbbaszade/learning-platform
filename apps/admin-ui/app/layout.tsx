@@ -1,3 +1,4 @@
+import { UIProvider } from "@repo/ui";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,8 +12,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
-			<body className="min-h-full flex flex-col">{children}</body>
+		<html lang="en" suppressHydrationWarning>
+			<body>
+				<UIProvider>{children}</UIProvider>
+			</body>
 		</html>
 	);
 }

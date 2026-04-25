@@ -1,3 +1,5 @@
+import { Text } from "@repo/ui";
+
 export default function Home() {
-	return <div>salam</div>;
+	return <Text>salam</Text>;
 }
