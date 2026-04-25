@@ -1,5 +1,5 @@
-import { Text } from "@repo/ui";
+import { Button } from "@repo/ui";
 
 export default function Home() {
-	return <Text>salam</Text>;
+	return <Button>salam</Button>;
 }
