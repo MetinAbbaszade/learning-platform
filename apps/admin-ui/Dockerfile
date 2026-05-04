@@ -50,7 +50,7 @@ RUN pnpm install --prod --frozen-lockfile --filter admin-ui
 COPY --from=builder /app/apps/admin-ui/.next ./apps/admin-ui/.next
 
 # (optional but recommended)
-COPY --from=builder /app/apps/admin-ui/next.config.js ./apps/admin-ui/next.config.js
+COPY --from=builder /app/apps/admin-ui/next.config.ts ./apps/admin-ui/next.config.ts
 
 # Permissions
 RUN chown -R appuser:appgroup /app

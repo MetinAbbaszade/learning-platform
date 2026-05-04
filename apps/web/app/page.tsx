@@ -1,5 +1,5 @@
-import { Text } from "@repo/ui";
+import { CadenceIcon } from "@repo/ui";
 
 export default function Home() {
-	return <Text>salam</Text>;
+	return <CadenceIcon boxSize={"48"} />;
 }
