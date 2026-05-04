@@ -1,5 +1,5 @@
-import { Button } from "@repo/ui";
+import { CadenceIcon } from "@repo/ui";
 
 export default function Home() {
-	return <Button>salam</Button>;
+	return <CadenceIcon />;
 }
